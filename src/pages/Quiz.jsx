@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import QuestionCard from "../components/QuestionCard";
+import { Link } from "react-router-dom";
 
 const Quiz = () => {
   // State variables
@@ -88,9 +89,9 @@ const Quiz = () => {
         <p className="font-mono bg-green-200 p-4">
           Bonus: Learnt some new words? Make a question out of it for others to
           try! Move to{" "}
-          <a href="/add-question" className="underline">
+          <Link to="/add-question" className="underline">
             Add Questions
-          </a>{" "}
+          </Link>{" "}
           now to do so.
         </p>
       </div>
