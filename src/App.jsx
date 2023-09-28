@@ -132,44 +132,46 @@ const App = () => {
     <>
       {loggedIn && <Navbar />}{" "}
       {/* Render the Navbar component when logged in */}
-      <Router>
-        <Routes>
-          <Route
-            path="/login"
-            element={
-              loggedIn ? (
-                <Navigate to="/" replace={true} />
-              ) : (
-                <Login
-                  onEmailChange={enterEmail}
-                  onPasswordChange={enterPassword}
-                  onSubmit={formSubmit}
-                  email={userEmail}
-                  password={userPassword}
-                />
-              )
-            }
-          />
-          <Route path="/" element={<ProtectedRoute element={<Home />} />} exact />
-          <Route
-            path="/user"
-            element={<ProtectedRoute element={<UserProfile />} />}
-            exact
-          />
-          <Route path="/quiz" element={<ProtectedRoute element={<Quiz />} />} exact />
-          <Route
-            path="/add-question"
-            element={<ProtectedRoute element={<AddQuestion />} />}
-            exact
-          />
-          <Route
-            path="/leaderboard"
-            element={<ProtectedRoute element={<LeadearBoard />} />}
-            exact
-          />
-          <Route path="*" element={<NotFound />} exact />
-        </Routes>
-      </Router>
+      <Routes>
+        <Route
+          path="/login"
+          element={
+            loggedIn ? (
+              <Navigate to="/" replace={true} />
+            ) : (
+              <Login
+                onEmailChange={enterEmail}
+                onPasswordChange={enterPassword}
+                onSubmit={formSubmit}
+                email={userEmail}
+                password={userPassword}
+              />
+            )
+          }
+        />
+        <Route path="/" element={<ProtectedRoute element={<Home />} />} exact />
+        <Route
+          path="/user"
+          element={<ProtectedRoute element={<UserProfile />} />}
+          exact
+        />
+        <Route
+          path="/quiz"
+          element={<ProtectedRoute element={<Quiz />} />}
+          exact
+        />
+        <Route
+          path="/add-question"
+          element={<ProtectedRoute element={<AddQuestion />} />}
+          exact
+        />
+        <Route
+          path="/leaderboard"
+          element={<ProtectedRoute element={<LeadearBoard />} />}
+          exact
+        />
+        <Route path="*" element={<NotFound />} exact />
+      </Routes>
     </>
   );
 };
