@@ -5,12 +5,12 @@ const Login = (props) => {
   return (
     <>
       <div className="flex justify-center items-center flex-col h-screen">
-        <h1 className="text-3xl lg:text-6xl font-bold font-mono p-5">
+        <h1 className="text-xl lg:text-6xl font-bold font-mono p-5">
           Welcome to PowrLingo
         </h1>
-        <h1 className="text-xl lg:text-3xl font-bold font-mono p-4 flex flex-col text-center ">
+        <h1 className="text-lg lg:text-3xl font-bold font-mono p-4 flex flex-col text-center ">
           Enter Your Email and Password to Login
-          <span className="font-normal text-xl">(If Not Registered you can Do that it here!!)</span>
+          <span className="font-normal text-md">(If Not Registered you can Do that it here!!)</span>
         </h1>
 
         <form onSubmit={props.onSubmit}>
