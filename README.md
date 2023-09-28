@@ -10,7 +10,7 @@
 - [Acknowledgments](#acknowledgments)
 
 ## Introduction
-PowrLingo Frontend is the user interface component of the PowrLingo application, providing a web-based platform for language learning and quizzes.
+PowrLingo is a dynamic web application designed to empower language learners. With PowrLingo, users can engage in immersive language practice, participate in friendly competitions, and strive for the top position on our leaderboard.
 
 ## Prerequisites
 Before setting up the frontend, ensure you have the following prerequisites installed:
