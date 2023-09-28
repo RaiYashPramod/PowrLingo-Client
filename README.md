@@ -6,7 +6,6 @@
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
-- [Folder Structure](#folder-structure)
 - [Contributing](#contributing)
 - [Acknowledgments](#acknowledgments)
 
@@ -35,12 +34,6 @@ To start the development server, run:
 ```bash
 npm run dev
 ```
-
-## Folder Structure
->src/: Contains the source code of the frontend application.
-  >components/: UI components.
-  >pages/: Individual pages of the application.
-  >App.js: Main application component.
   
 ## Contributing
 We welcome contributions! You can reach me at raiyashpramod16@gmail.com
