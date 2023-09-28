@@ -1,5 +1,6 @@
 import { UserCircle2, Menu as MenuIcon, X } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,17 +14,17 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-lg text-white bg-black font-mono h-auto p-8">
         <div className="flex flex-row justify-between">
           <h3 className="text-white font-mono text-xl">
-            <a href="/">PowrLingo</a>
+          <Link to={"/"}>PowrLingo</Link>
           </h3>
           <div className="lg:flex lg:flex-row-reverse justify-between text-lg w-[30rem] hidden">
-            <a href="/user">
+            <Link to={"/user"}>
               <UserCircle2 className="w-8 h-8"/>
-            </a>
+            </Link>
             <a href="/" onClick={handleLogOut}>
               Logout
             </a>
-            <a href="/quiz">Quiz</a>
-            <a href="/leaderboard">LeaderBoard</a>
+            <Link to={"/quiz"}>Quiz</Link>
+            <Link to={"/leaderboard"}>LeaderBoard</Link>
             {/* <a href="/add-question">Add Questions</a> */}
           </div>
           <button
@@ -48,15 +49,15 @@ const Navbar = () => {
           >
             <X className="text-white h-6 w-6 cursor-pointer" />
           </button>
-          <a href="/user">
+          <Link to={"/user"}>
             <UserCircle2 className="w-20 h-20"/>
-          </a>
+          </Link>
           <a href="/" onClick={handleLogOut}>
             Logout
           </a>
-          <a href="/quiz">Quiz</a>
-          <a href="/leaderboard">Leader-Board</a>
-          <a href="/add-question">Add Questions</a>
+          <Link to={"/quiz"}>Quiz</Link>
+          <Link to={"/leaderboard"}>LeaderBoard</Link>
+          {/* <Link to={"/add-question"}>Add Questions</Link> */}
         </div>
       </div>
     </>
