@@ -3,7 +3,6 @@ import toast from "react-hot-toast";
 import axios from "axios";
 
 const AddQuestion = () => {
-  // State variable to store question data
   const [question, setQuestion] = useState({
     language: "",
     type: "",
@@ -13,47 +12,37 @@ const AddQuestion = () => {
     incorrectAnswers: ["", "", ""],
   });
 
-  // Arrays for language and difficulty options
   const languages = ["English", "French", "German"];
   const difficulties = ["Easy", "Medium", "Hard"];
 
-  // Function to handle input changes for the form fields
   const handleChange = (e) => {
     const { name, value } = e.target;
     setQuestion({ ...question, [name]: value });
   };
 
-  // Function to handle changes in incorrect answer options
   const handleIncorrectAnswerChange = (index, value) => {
     const newIncorrectAnswers = [...question.incorrectAnswers];
     newIncorrectAnswers[index] = value;
     setQuestion({ ...question, incorrectAnswers: newIncorrectAnswers });
   };
 
-  // Function to add a new question
   const handleAddQuestion = async () => {
-    try {
-      const response = await axios.post(
-        "https://pear-lucky-panda.cyclic.cloud/api/questions/add-question",
-        question
-      );
-      if (response) {
-        toast.success(response.data.message);
-        // Reset the form fields after successfully adding a question
-        setQuestion({
-          language: "",
-          type: "",
-          difficulty: "",
-          questionText: "",
-          correctAnswer: "",
-          incorrectAnswers: ["", "", ""],
-        });
-      } else {
-        toast.error("Something Went wrong");
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error("An error occurred while adding the question.");
+    const response = await axios.post(
+      "https://pear-lucky-panda.cyclic.cloud/api/questions/add-question",
+      question
+    );
+    if (response) {
+      toast.success(response.data.message);
+      setQuestion({
+        language: "",
+        type: "",
+        difficulty: "",
+        questionText: "",
+        correctAnswer: "",
+        incorrectAnswers: ["", "", ""],
+      });
+    } else {
+      toast.error("Something Went wrong");
     }
   };
 
@@ -79,8 +68,83 @@ const AddQuestion = () => {
             ))}
           </select>
         </div>
-        {/* Add more form fields for type, difficulty, question text, etc. */}
-        {/* ... */}
+        <div>
+          <label className="block text-gray-700 font-semibold">Type:</label>
+          <select
+            name="type"
+            value={question.type}
+            onChange={handleChange}
+            className="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring focus:border-blue-500"
+          >
+            <option value="">Select Type of Question</option>
+            <option value="Multiple">Multiple</option>
+            {/* Add more language options */}
+          </select>
+        </div>
+        <div>
+          <label className="block text-gray-700 font-semibold">
+            Difficulty:
+          </label>
+          <select
+            name="difficulty"
+            value={question.difficulty}
+            onChange={handleChange}
+            className="w-full border border-gray-300 rounded p-2 focus:outline-none focus:ring focus:border-blue-500"
+          >
+            <option value="">Select Difficulty</option>
+            {difficulties.map((diff) => (
+              <option key={diff} value={diff}>
+                {diff}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label className="block text-gray-700 font-semibold">
+            Question Text: <br />
+            <span className="text-sm font-thin">
+              (Optional: Add Underscore(_) in the question, indicating blank space for
+              answer)
+            </span>
+          </label>
+          <textarea
+            name="questionText"
+            value={question.questionText}
+            onChange={handleChange}
+            rows="3"
+            className="w-full border border-gray-300 rounded p-2 focus:outline-none"
+          />
+        </div>
+        <div>
+          <label className="block text-gray-700 font-semibold">
+            Correct Answer:
+          </label>
+          <input
+            type="text"
+            name="correctAnswer"
+            value={question.correctAnswer}
+            onChange={handleChange}
+            className="w-full border border-gray-300 rounded p-2 focus:outline-none "
+          />
+        </div>
+        <div>
+          <label className="block text-gray-700 font-semibold">
+            Incorrect Answers:
+          </label>
+          {question.incorrectAnswers.map((answer, index) => (
+            <div className="p-2" key={index}>
+              <input
+                key={index}
+                type="text"
+                value={answer}
+                onChange={(e) =>
+                  handleIncorrectAnswerChange(index, e.target.value)
+                }
+                className="w-full border border-gray-300 rounded p-2 focus:outline-none"
+              />
+            </div>
+          ))}
+        </div>
         <button
           onClick={handleAddQuestion}
           className="bg-black text-white font-semibold py-2 px-4 rounded hover:bg-gray-300 hover:text-black transition duration-300"
