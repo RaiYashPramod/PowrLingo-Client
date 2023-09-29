@@ -127,7 +127,7 @@ const App = () => {
 
   // Define a protected route component to handle user authentication
   const ProtectedRoute = ({ element }) => {
-    return loggedIn ? element : <Navigate to="/login" replace={true} />;
+    return loggedIn ? element : <Navigate to="/login"/>;
   };
 
   ProtectedRoute.propTypes = {
