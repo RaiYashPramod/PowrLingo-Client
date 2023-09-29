@@ -1,4 +1,4 @@
-import { ArrowRightCircle } from "lucide-react";
+import { ArrowRightCircle, Loader2 } from "lucide-react";
 import PropTypes from "prop-types";
 
 const Login = (props) => {
@@ -10,7 +10,9 @@ const Login = (props) => {
         </h1>
         <h1 className="text-lg lg:text-3xl font-bold font-mono p-4 flex flex-col text-center ">
           Enter Your Email and Password to Login
-          <span className="font-normal text-md">(If Not Registered you can Do that it here!!)</span>
+          <span className="font-normal text-md">
+            (If Not Registered you can Do that it here!!)
+          </span>
         </h1>
 
         <form onSubmit={props.onSubmit}>
@@ -30,9 +32,15 @@ const Login = (props) => {
                 value={props.password}
                 onChange={props.onPasswordChange}
               />
-              <button className="mt-4">
-                <ArrowRightCircle className="h-10 w-10 ml-4" />
-              </button>
+              {props.loading ? (
+                <div className="mt-4 ml-4">
+                  <Loader2 size={"2.5rem"}/>
+                </div>
+              ) : (
+                <button className="mt-4">
+                  <ArrowRightCircle className="h-10 w-10 ml-4" />
+                </button>
+              )}
             </div>
           </div>
         </form>
@@ -47,6 +55,7 @@ Login.propTypes = {
   onEmailChange: PropTypes.func.isRequired,
   password: PropTypes.string.isRequired,
   onPasswordChange: PropTypes.func.isRequired,
+  loginLoading: PropTypes.bool.isRequired,
 };
 
 export default Login;

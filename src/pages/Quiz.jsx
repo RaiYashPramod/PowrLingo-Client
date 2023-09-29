@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import QuestionCard from "../components/QuestionCard";
 import { Link } from "react-router-dom";
+import { Loader } from "lucide-react";
 
 const Quiz = () => {
   // State variables
@@ -97,8 +98,8 @@ const Quiz = () => {
       </div>
       <div className="p-8">
         {isLoading ? ( // Check if isLoading is true
-          <div className="text-center font-mono text-2xl font-semibold">
-            <p>Loading...</p>
+          <div>
+            <p className="flex justify-center items-center"><Loader size={"10rem"} /></p>
           </div>
         ) : questions.length === 0 ? ( // Check if there are no questions
           <div className="text-center">

@@ -16,6 +16,7 @@ import AddQuestion from "./pages/AddQuestion";
 import LeadearBoard from "./pages/LeadearBoard";
 import PropTypes from "prop-types";
 import NotFound from "./pages/NotFound";
+import Loading from "./components/Loading";
 
 const App = () => {
   // State variables
@@ -23,6 +24,7 @@ const App = () => {
   const [userEmail, setUserEmail] = useState(""); // To store user email input
   const [userPassword, setUserPassword] = useState(""); // To store user password input
   const [loading, setLoading] = useState(true); // To handle loading state
+  const [loginLoading, setLoginLoading] = useState(false);
 
   // Get the user's token from local storage
   const token = JSON.parse(localStorage.getItem("token"));
@@ -30,8 +32,14 @@ const App = () => {
   // Function to verify the user's token on component mount
   const verifyToken = async () => {
     if (!token) {
-      setLoading(false); // Set loading to false when there's no token
-      return setLoggedIn(false); // Set loggedIn to false when there's no token
+      // Add a 2-second delay before setting loading to false and loggedIn to false
+      setTimeout(() => {
+        setLoading(false);
+        setTimeout(() => {
+          setLoggedIn(false);
+        }, 4000); // 2000 milliseconds (2 seconds)
+      }, 2000); // 2000 milliseconds (2 seconds)
+      return;
     }
 
     try {
@@ -43,10 +51,10 @@ const App = () => {
 
       // If the token is valid, log the user in; otherwise, log them out
       response.data.ok ? login(token) : logout();
-      setLoading(false); // Set loading to false after verifying
     } catch (error) {
       console.error(error);
-      setLoading(false); // Set loading to false in case of an error
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -69,6 +77,7 @@ const App = () => {
 
   // Function to handle user sign-in
   const signIn = async (email, password) => {
+    setLoginLoading(true);
     try {
       const res = await axios.post(
         `https://pear-lucky-panda.cyclic.cloud/api/users/login`,
@@ -81,14 +90,18 @@ const App = () => {
       // If a valid token is received, display a success toast and log in the user
       if (res.data.token) {
         login(res.data.token);
+        // setLoginLoading(true)
         toast.success("Welcome Back!");
       } else {
-        // If no valid token, display an error toast
+        // If no valid token, display an error toast'
         toast(res.data.message);
       }
     } catch (error) {
       console.error(error);
+      setLoginLoading(true);
       toast.error("An error occurred during login.");
+    } finally {
+      setLoginLoading(false);
     }
   };
 
@@ -112,11 +125,7 @@ const App = () => {
 
   // While loading, display a loading message
   if (loading) {
-    return (
-      <p className="text-center font-mono h-screen flex justify-center items-center text-2xl font-semibold">
-        Loading...
-      </p>
-    );
+    return <Loading />;
   }
 
   // Define a protected route component to handle user authentication
@@ -130,7 +139,7 @@ const App = () => {
 
   return (
     <>
-      {loggedIn && <Navbar />}{" "}
+      {loggedIn && <Navbar />}
       {/* Render the Navbar component when logged in */}
       <Routes>
         <Route
@@ -145,6 +154,7 @@ const App = () => {
                 onSubmit={formSubmit}
                 email={userEmail}
                 password={userPassword}
+                loading={loginLoading}
               />
             )
           }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { Loader2, MoreHorizontal } from "lucide-react";
 
 // Get the user's token from local storage
 const token = JSON.parse(localStorage.getItem("token"));
@@ -8,6 +9,9 @@ const token = JSON.parse(localStorage.getItem("token"));
 const UserProfile = () => {
   // State variables to manage user data and form input
   const [user, setUser] = useState({}); // To store user data
+  const [loading, setLoading] = useState(true);
+  const [updateLoad, setUpdateLoad] = useState(true)
+  const [resetLoad, setResetLoad] = useState(true)
   const [formData, setFormData] = useState({
     name: "",
     languageToLearn: "",
@@ -22,8 +26,11 @@ const UserProfile = () => {
   const getUser = async (token) => {
     // Fetch user data from the server using the token
     axios.defaults.headers.common["Authorization"] = token;
-    const response = await axios.get("https://pear-lucky-panda.cyclic.cloud/api/users/getuser");
+    const response = await axios.get(
+      "https://pear-lucky-panda.cyclic.cloud/api/users/getuser"
+    );
     setUser(response.data.user); // Set user data in state
+    setLoading(false);
     setFormData({
       name: response.data.user.Name,
       languageToLearn: response.data.user.languageToLearn,
@@ -38,7 +45,7 @@ const UserProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
-
+    setUpdateLoad(false)
     try {
       axios.defaults.headers.common["Authorization"] = token; // Set the Authorization header with the token
 
@@ -48,9 +55,11 @@ const UserProfile = () => {
         formData
       );
 
+
       if (response.data.ok) {
         // If the update is successful, update the user's data in the state and show a success toast
         getUser(token);
+        setUpdateLoad(true)
         toast.success("Profile updated successfully!");
       } else {
         // If the update fails, show an error toast
@@ -63,45 +72,51 @@ const UserProfile = () => {
     }
   };
 
-  const ResetProgress = async () =>{
+  const ResetProgress = async () => {
+    setResetLoad(false)
     axios.defaults.headers.common["Authorization"] = token; // Set the Authorization header with the token
-    const response = await axios.patch("https://pear-lucky-panda.cyclic.cloud/api/users/resetprogress");
-    if(response.data.ok){
+    const response = await axios.patch(
+      "https://pear-lucky-panda.cyclic.cloud/api/users/resetprogress"
+    );
+    if (response.data.ok) {
       getUser(token);
+      setResetLoad(true)
       toast.success("Progress reset successfully!");
     } else {
       toast.error("Progress reset failed, please try again later.");
     }
-  }
+  };
 
   return (
     <div className="user-profile bg-gray-100 max-h-screen lg:min-h-screen p-4 font-mono">
       {user ? (
         <>
           <div className="max-w-md mx-auto p-6 bg-black text-white rounded-lg shadow-lg">
-            <h2 className="text-2xl font-semibold mb-4">
-              User Profile
-            </h2>
+            <h2 className="text-2xl font-semibold mb-4">User Profile</h2>
             <form onSubmit={handleSubmit}>
               <div className="space-y-2">
                 <div className="flex">
                   <label className="font-semibold mr-2" htmlFor="name">
                     Name:
                   </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    className="font-mono focus:outline-none bg-black"
-                    value={formData.name}
-                    onChange={handleChange}
-                  />
+                  {loading ? (
+                    <MoreHorizontal />
+                  ) : (
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      className="font-mono focus:outline-none bg-black"
+                      value={formData.name}
+                      onChange={handleChange}
+                    />
+                  )}
                 </div>
-                <div>
-                  <label htmlFor="email" className="font-semibold">
+                <div className="flex">
+                  <label htmlFor="email" className="font-semibold mr-2">
                     Email:{" "}
                   </label>
-                  {user.Email} {/* Display the user's email */}
+                  {loading ? <MoreHorizontal /> : <p>{user.Email}</p>}
                 </div>
                 <div className="flex">
                   <label
@@ -110,17 +125,21 @@ const UserProfile = () => {
                   >
                     Language to Learn:
                   </label>
-                  <select
-                    id="languageToLearn"
-                    name="languageToLearn"
-                    className="font-mono focus:outline-none bg-black"
-                    value={formData.languageToLearn}
-                    onChange={handleChange}
-                  >
-                    <option value="English">English</option>
-                    <option value="German">German</option>
-                    <option value="French">French</option>
-                  </select>
+                  {loading ? (
+                    <MoreHorizontal />
+                  ) : (
+                    <select
+                      id="languageToLearn"
+                      name="languageToLearn"
+                      className="font-mono focus:outline-none bg-black"
+                      value={formData.languageToLearn}
+                      onChange={handleChange}
+                    >
+                      <option value="English">English</option>
+                      <option value="German">German</option>
+                      <option value="French">French</option>
+                    </select>
+                  )}
                 </div>
                 <div className="flex">
                   <label
@@ -129,61 +148,73 @@ const UserProfile = () => {
                   >
                     Language Familiarity:
                   </label>
-                  <select
-                    id="languageFamiliarity"
-                    name="languageFamiliarity"
-                    className="font-mono focus:outline-none bg-black"
-                    value={formData.languageFamiliarity}
-                    onChange={handleChange}
-                  >
-                    <option value="beginner">Beginner</option>
-                    <option value="intermediate">Intermediate</option>
-                    <option value="expert">Expert</option>
-                  </select>
+                  {loading ? (
+                    <MoreHorizontal />
+                  ) : (
+                    <select
+                      id="languageFamiliarity"
+                      name="languageFamiliarity"
+                      className="font-mono focus:outline-none bg-black"
+                      value={formData.languageFamiliarity}
+                      onChange={handleChange}
+                    >
+                      <option value="beginner">Beginner</option>
+                      <option value="intermediate">Intermediate</option>
+                      <option value="expert">Expert</option>
+                    </select>
+                  )}
                 </div>
               </div>
 
               <button
                 type="submit"
-                className="mt-4 px-4 py-2 bg-white text-black rounded hover:bg-gray-600 hover:text-white transition duration-300"
+                className="mt-4 w-40 flex justify-center items-center px-4 py-2 bg-white text-black rounded hover:bg-gray-600 hover:text-white transition duration-300"
               >
-                Update Profile
+                {updateLoad ? ("Update Profile") : <Loader2 />}
               </button>
             </form>
           </div>
 
           <div className="max-w-md mx-auto p-6 mt-4 bg-black text-white rounded-lg shadow-lg">
-            <h2 className="text-2xl font-semibold mb-4">
-              Statistic
-            </h2>
+            <h2 className="text-2xl font-semibold mb-4">Statistic</h2>
             <div className="flex flex-row">
-              <span className="font-semibold">Total Solved:{" "}</span>
-              <p className="ml-4">
-                {Array.isArray(user.AttemptedQuestions)
-                  ? user.totalQuestions.length
-                  : 0}
-              </p>
+              <span className="font-semibold">Total Solved: </span>
+              {loading ? (
+                <MoreHorizontal />
+              ) : (
+                <p className="ml-4">
+                  {Array.isArray(user.AttemptedQuestions)
+                    ? user.totalQuestions.length
+                    : 0}
+                </p>
+              )}
             </div>
             <div className="flex flex-row">
-              <span className="font-semibold">Question Attempted:{" "}</span>
-              <p className="ml-4">
+              <span className="font-semibold">Question Attempted: </span>
+              {loading ? (<MoreHorizontal />) : (<p className="ml-4">
                 {Array.isArray(user.totalQuestions)
                   ? user.totalQuestions.filter(
                       (language) => language === formData.languageToLearn
                     ).length
                   : 0}
-              </p>
+              </p>)}
+              
             </div>
 
             <span className="font-semibold flex flex-row">
-              Points Scored: <p className="ml-4">{user.PointsScored}</p>
+              Points Scored: {loading ? (<MoreHorizontal />) : (<p className="ml-4">{user.PointsScored}</p>)} 
             </span>
 
-            <button className="p-2 bg-rose-600 rounded-md mt-4 text-white" onClick={ResetProgress}>Reset Progress</button>
+            <button
+              className="p-2 bg-rose-600 rounded-md w-40 flex justify-center items-center mt-4 text-white"
+              onClick={ResetProgress}
+            >
+              {resetLoad ? "Reset Progress" : <Loader2 /> }
+            </button>
           </div>
         </>
       ) : (
-        <div className="text-center text-gray-600">Loading...</div>
+        <div className="text-center">Loading...</div>
       )}
     </div>
   );

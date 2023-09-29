@@ -1,3 +1,4 @@
+import { Loader } from "lucide-react";
 import { RankingCard } from "../components/RankingCard";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -43,7 +44,7 @@ const LeadearBoard = () => {
             </div>
           ))
         ) : (
-          <p>Loading...</p> // Display a loading message while fetching data
+          <p><Loader size={"10rem"} /></p> // Display a loading message while fetching data
         )}
       </div>
     </>
