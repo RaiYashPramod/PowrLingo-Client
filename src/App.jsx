@@ -24,22 +24,17 @@ const App = () => {
   const [userEmail, setUserEmail] = useState(""); // To store user email input
   const [userPassword, setUserPassword] = useState(""); // To store user password input
   const [loading, setLoading] = useState(true); // To handle loading state
-  const [loginLoading, setLoginLoading] = useState(false);
+  const [loginLoading, setLoginLoading] = useState(false)
 
   // Get the user's token from local storage
   const token = JSON.parse(localStorage.getItem("token"));
 
   // Function to verify the user's token on component mount
   const verifyToken = async () => {
+    
     if (!token) {
-      // Add a 2-second delay before setting loading to false and loggedIn to false
-      setTimeout(() => {
-        setLoading(false);
-        setTimeout(() => {
-          setLoggedIn(false);
-        }, 4000); // 2000 milliseconds (2 seconds)
-      }, 2000); // 2000 milliseconds (2 seconds)
-      return;
+      setLoading(false); // Set loading to false when there's no token
+      return setLoggedIn(false); // Set loggedIn to false when there's no token
     }
 
     try {
@@ -54,7 +49,7 @@ const App = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
   };
 
@@ -77,7 +72,7 @@ const App = () => {
 
   // Function to handle user sign-in
   const signIn = async (email, password) => {
-    setLoginLoading(true);
+    setLoginLoading(true)
     try {
       const res = await axios.post(
         `https://pear-lucky-panda.cyclic.cloud/api/users/login`,
@@ -98,10 +93,10 @@ const App = () => {
       }
     } catch (error) {
       console.error(error);
-      setLoginLoading(true);
+      setLoginLoading(true)
       toast.error("An error occurred during login.");
     } finally {
-      setLoginLoading(false);
+      setLoginLoading(false)
     }
   };
 
@@ -125,7 +120,9 @@ const App = () => {
 
   // While loading, display a loading message
   if (loading) {
-    return <Loading />;
+    return (
+      <Loading />
+    );
   }
 
   // Define a protected route component to handle user authentication

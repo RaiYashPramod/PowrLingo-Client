@@ -25,8 +25,6 @@ const LeadearBoard = () => {
     fetchLeaderBoard();
   }, []);
 
-  console.log(data.leaderboard); // Log the fetched leaderboard data for debugging
-
   return (
     <>
       <div className="flex flex-col items-center bg-gray-100 font-mono min-h-screen">
@@ -44,7 +42,10 @@ const LeadearBoard = () => {
             </div>
           ))
         ) : (
-          <p><Loader size={"10rem"} /></p> // Display a loading message while fetching data
+          // <p><Loader size={"10rem"} /></p>
+          <div className="flex justify-center items-center">
+            <div className="w-32 h-32 border-t-8 border-black border-solid rounded-full animate-spin"></div>
+          </div>
         )}
       </div>
     </>

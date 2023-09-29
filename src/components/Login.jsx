@@ -10,7 +10,7 @@ const Login = (props) => {
         </h1>
         <h1 className="text-lg lg:text-3xl font-bold font-mono p-4 flex flex-col text-center ">
           Enter Your Email and Password to Login
-          <span className="font-normal text-md">
+          <span className="font-normal text-sm">
             (If Not Registered you can Do that it here!!)
           </span>
         </h1>
@@ -55,7 +55,7 @@ Login.propTypes = {
   onEmailChange: PropTypes.func.isRequired,
   password: PropTypes.string.isRequired,
   onPasswordChange: PropTypes.func.isRequired,
-  loginLoading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default Login;

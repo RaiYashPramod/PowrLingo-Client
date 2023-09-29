@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 
 export const RankingCard = ({ name, points, questionsSolved, rank }) => {
-  console.log(name, points, questionsSolved, rank)
   return (
     <div className="flex flex-col max-w-md mx-auto p-6 bg-black text-white w-80 rounded-lg shadow-2xl shadow-black">
       <div className="flex mb-4">
