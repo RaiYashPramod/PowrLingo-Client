@@ -10,8 +10,8 @@ const UserProfile = () => {
   // State variables to manage user data and form input
   const [user, setUser] = useState({}); // To store user data
   const [loading, setLoading] = useState(true);
-  const [updateLoad, setUpdateLoad] = useState(true)
-  const [resetLoad, setResetLoad] = useState(true)
+  const [updateLoad, setUpdateLoad] = useState(true);
+  const [resetLoad, setResetLoad] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
     languageToLearn: "",
@@ -19,23 +19,27 @@ const UserProfile = () => {
   }); // To manage form data for updating user profile
 
   useEffect(() => {
-    // Function to fetch user data and populate the form on component mount
     getUser(token);
-  }, []); // Run this effect when the token changes (e.g., user logs in or out)
+  }, []);
 
   const getUser = async (token) => {
-    // Fetch user data from the server using the token
-    axios.defaults.headers.common["Authorization"] = token;
-    const response = await axios.get(
-      "https://pear-lucky-panda.cyclic.cloud/api/users/getuser"
-    );
-    setUser(response.data.user); // Set user data in state
-    setLoading(false);
-    setFormData({
-      name: response.data.user.Name,
-      languageToLearn: response.data.user.languageToLearn,
-      languageFamiliarity: response.data.user.languageFamiliarity,
-    }); // Populate the form with user data
+    try {
+      // Fetch user data from the server using the token
+      axios.defaults.headers.common["Authorization"] = token;
+      const response = await axios.get(
+        "https://pear-lucky-panda.cyclic.cloud/api/users/getuser"
+      );
+      setUser(response.data.user); // Set user data in state
+      setLoading(false);
+      setFormData({
+        name: response.data.user.Name,
+        languageToLearn: response.data.user.languageToLearn,
+        languageFamiliarity: response.data.user.languageFamiliarity,
+      }); // Populate the form with user data
+      toast.success("User Data retrieved successfully");
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
   const handleChange = (e) => {
@@ -45,7 +49,7 @@ const UserProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
-    setUpdateLoad(false)
+    setUpdateLoad(false);
     try {
       axios.defaults.headers.common["Authorization"] = token; // Set the Authorization header with the token
 
@@ -55,11 +59,10 @@ const UserProfile = () => {
         formData
       );
 
-
       if (response.data.ok) {
         // If the update is successful, update the user's data in the state and show a success toast
         getUser(token);
-        setUpdateLoad(true)
+        setUpdateLoad(true);
         toast.success("Profile updated successfully!");
       } else {
         // If the update fails, show an error toast
@@ -73,14 +76,14 @@ const UserProfile = () => {
   };
 
   const ResetProgress = async () => {
-    setResetLoad(false)
+    setResetLoad(false);
     axios.defaults.headers.common["Authorization"] = token; // Set the Authorization header with the token
     const response = await axios.patch(
       "https://pear-lucky-panda.cyclic.cloud/api/users/resetprogress"
     );
     if (response.data.ok) {
       getUser(token);
-      setResetLoad(true)
+      setResetLoad(true);
       toast.success("Progress reset successfully!");
     } else {
       toast.error("Progress reset failed, please try again later.");
@@ -170,7 +173,7 @@ const UserProfile = () => {
                 type="submit"
                 className="mt-4 w-40 flex justify-center items-center px-4 py-2 bg-white text-black rounded hover:bg-gray-600 hover:text-white transition duration-300"
               >
-                {updateLoad ? ("Update Profile") : <Loader2 />}
+                {updateLoad ? "Update Profile" : <Loader2 />}
               </button>
             </form>
           </div>
@@ -191,25 +194,33 @@ const UserProfile = () => {
             </div>
             <div className="flex flex-row">
               <span className="font-semibold">Question Attempted: </span>
-              {loading ? (<MoreHorizontal />) : (<p className="ml-4">
-                {Array.isArray(user.totalQuestions)
-                  ? user.totalQuestions.filter(
-                      (language) => language === formData.languageToLearn
-                    ).length
-                  : 0}
-              </p>)}
-              
+              {loading ? (
+                <MoreHorizontal />
+              ) : (
+                <p className="ml-4">
+                  {Array.isArray(user.totalQuestions)
+                    ? user.totalQuestions.filter(
+                        (language) => language === formData.languageToLearn
+                      ).length
+                    : 0}
+                </p>
+              )}
             </div>
 
             <span className="font-semibold flex flex-row">
-              Points Scored: {loading ? (<MoreHorizontal />) : (<p className="ml-4">{user.PointsScored}</p>)} 
+              Points Scored:{" "}
+              {loading ? (
+                <MoreHorizontal />
+              ) : (
+                <p className="ml-4">{user.PointsScored}</p>
+              )}
             </span>
 
             <button
               className="p-2 bg-rose-600 rounded-md w-40 flex justify-center items-center mt-4 text-white"
               onClick={ResetProgress}
             >
-              {resetLoad ? "Reset Progress" : <Loader2 /> }
+              {resetLoad ? "Reset Progress" : <Loader2 />}
             </button>
           </div>
         </>

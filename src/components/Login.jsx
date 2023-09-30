@@ -1,4 +1,4 @@
-import { ArrowRightCircle, Loader2 } from "lucide-react";
+import { ArrowRightCircle, Loader } from "lucide-react";
 import PropTypes from "prop-types";
 
 const Login = (props) => {
@@ -34,7 +34,7 @@ const Login = (props) => {
               />
               {props.loading ? (
                 <div className="mt-4 ml-4">
-                  <Loader2 size={"2.5rem"}/>
+                  <Loader size={"2.5rem"}/>
                 </div>
               ) : (
                 <button className="mt-4">
