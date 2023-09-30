@@ -23,9 +23,9 @@ const UserProfile = () => {
   }, []);
 
   const getUser = async (token) => {
+    axios.defaults.headers.common["Authorization"] = token;
     try {
       // Fetch user data from the server using the token
-      axios.defaults.headers.common["Authorization"] = token;
       const response = await axios.get(
         "https://pear-lucky-panda.cyclic.cloud/api/users/getuser"
       );
