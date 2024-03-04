@@ -1,49 +1,60 @@
-import { ArrowRightCircle, Loader } from "lucide-react";
+import { Loader } from "lucide-react";
 import PropTypes from "prop-types";
+import backgroundImage from "../assets/loginbg.jpg";
+import { useState } from "react";
 
 const Login = (props) => {
+  const handleDemoLogin  = () => {
+    props.onSubmit()
+  }
   return (
     <>
-      <div className="flex justify-center items-center flex-col h-screen">
-        <h1 className="text-xl lg:text-6xl font-bold font-mono p-5">
+      <div
+        className="flex justify-center items-center flex-col h-screen"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: "cover",
+        }}
+      >
+        <h1 className="text-xl lg:text-6xl font-bold font-mono">
           Welcome to PowrLingo
         </h1>
-        <h1 className="text-lg lg:text-3xl font-bold font-mono p-4 flex flex-col text-center ">
-          Enter Your Email and Password to Login
+        <h1 className="text-lg lg:text-3xl font-bold font-mono py-2 text-center ">
           <span className="font-normal text-sm">
-            (If Not Registered you can Do that it here!!)
+            (If Not Registered you can Do that here!!)
           </span>
         </h1>
 
-        <form onSubmit={props.onSubmit}>
-          <div className="flex flex-col">
-            <input
-              type="email"
-              className="p-2 lg:w-80 w-64 bg-gray-300 rounded font-mono focus:outline-none"
-              placeholder="example@gmail.com"
-              value={props.email}
-              onChange={props.onEmailChange}
-            />
-            <div className="flex flex-row">
+        <section>
+          <form onSubmit={props.onSubmit}>
+            <div className="flex flex-col w-80">
+              <input
+                type="email"
+                className="p-4 w-full bg-gray-300 rounded font-mono focus:outline-none"
+                placeholder="example@gmail.com"
+                value={props.email}
+                onChange={props.onEmailChange}
+              />
+
               <input
                 type="password"
-                className="p-2 lg:w-80 w-64 bg-gray-300 rounded font-mono focus:outline-none mt-4"
+                className="p-4 w-full bg-gray-300 rounded font-mono focus:outline-none mt-4"
                 placeholder="Password"
                 value={props.password}
                 onChange={props.onPasswordChange}
               />
-              {props.loading ? (
-                <div className="mt-4 ml-4">
-                  <Loader size={"2.5rem"}/>
-                </div>
-              ) : (
-                <button className="mt-4">
-                  <ArrowRightCircle className="h-10 w-10 ml-4" />
-                </button>
-              )}
+
+              <button className="mt-4 w-full bg-black p-4 text-white rounded-md flex justify-center items-center font-mono">
+                {props.loading ? <Loader /> : "Login/Register"}
+              </button>
             </div>
-          </div>
-        </form>
+          </form>
+        </section>
+        <section className="p-4 border-t-[0.07rem] border-black mt-4">
+          <button className="w-80 p-4 bg-black text-white rounded-md font-mono flex justify-center items-center" onClick={handleDemoLogin}> 
+            {props.loading ? <Loader /> : "Demo Login"}
+          </button>
+        </section>
       </div>
     </>
   );

@@ -33,12 +33,16 @@ const LeadearBoard = () => {
           // Map through the leaderboard data and render RankingCard components
           data.leaderboard.map((userData, index) => (
             <div className="py-4 mx-auto" key={userData.UUI}>
-              <RankingCard
-                rank={index + 1} // Calculate and display the rank
-                name={userData.Name}
-                points={userData.PointsScored}
-                questionsSolved={userData.totalQuestions.length}
-              />
+              {userData.Name != "Anonymous" ? (
+                <RankingCard
+                  rank={index + 1} // Calculate and display the rank
+                  name={userData.Name}
+                  points={userData.PointsScored}
+                  questionsSolved={userData.totalQuestions.length}
+                />
+              ) : (
+                <></>
+              )}
             </div>
           ))
         ) : (

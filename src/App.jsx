@@ -17,6 +17,8 @@ import LeadearBoard from "./pages/LeadearBoard";
 import PropTypes from "prop-types";
 import NotFound from "./pages/NotFound";
 import Loading from "./components/Loading";
+import BattleGround from "./components/BattleGround";
+
 
 const App = () => {
   // State variables
@@ -24,14 +26,13 @@ const App = () => {
   const [userEmail, setUserEmail] = useState(""); // To store user email input
   const [userPassword, setUserPassword] = useState(""); // To store user password input
   const [loading, setLoading] = useState(true); // To handle loading state
-  const [loginLoading, setLoginLoading] = useState(false)
+  const [loginLoading, setLoginLoading] = useState(false);
 
   // Get the user's token from local storage
   const token = JSON.parse(localStorage.getItem("token"));
 
   // Function to verify the user's token on component mount
   const verifyToken = async () => {
-    
     if (!token) {
       setLoading(false); // Set loading to false when there's no token
       return setLoggedIn(false); // Set loggedIn to false when there's no token
@@ -47,9 +48,9 @@ const App = () => {
       // If the token is valid, log the user in; otherwise, log them out
       response.data.ok ? login(token) : logout();
     } catch (error) {
-      console.error(error);
+      toast.error(error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -72,7 +73,7 @@ const App = () => {
 
   // Function to handle user sign-in
   const signIn = async (email, password) => {
-    setLoginLoading(true)
+    setLoginLoading(true);
     try {
       const res = await axios.post(
         `https://pear-lucky-panda.cyclic.cloud/api/users/login`,
@@ -93,10 +94,10 @@ const App = () => {
       }
     } catch (error) {
       console.error(error);
-      setLoginLoading(true)
+      setLoginLoading(true);
       toast.error("An error occurred during login.");
     } finally {
-      setLoginLoading(false)
+      setLoginLoading(false);
     }
   };
 
@@ -112,26 +113,23 @@ const App = () => {
 
   // Function to handle email submission
   const formSubmit = (e) => {
-    e.preventDefault();
-    signIn(userEmail, userPassword);
-    setUserEmail("");
-    setUserPassword("");
+    if (userEmail && userPassword) {
+      signIn(userEmail, userPassword);
+      setUserEmail("");
+      setUserPassword("");
+    } else {
+      signIn("demo@gmail.com", "rai");
+    }
   };
 
   // While loading, display a loading message
   if (loading) {
-    return (
-      <Loading />
-    );
+    return <Loading />;
   }
 
   // Define a protected route component to handle user authentication
   const ProtectedRoute = ({ element }) => {
-    return loggedIn ? element : <Navigate to="/login"/>;
-  };
-
-  ProtectedRoute.propTypes = {
-    element: PropTypes.node.isRequired,
+    return loggedIn ? element : <Navigate to="/login" />;
   };
 
   return (
@@ -156,26 +154,26 @@ const App = () => {
             )
           }
         />
-        <Route path="/" element={<ProtectedRoute element={<Home />} />} exact />
+        <Route path="/" element={<Home />} exact />
         <Route
-          path="/user"
+          path="/userprofile"
           element={<ProtectedRoute element={<UserProfile />} />}
-          exact
         />
         <Route
-          path="/quiz"
+          path="/practice"
           element={<ProtectedRoute element={<Quiz />} />}
-          exact
         />
         <Route
           path="/add-question"
           element={<ProtectedRoute element={<AddQuestion />} />}
-          exact
         />
         <Route
           path="/leaderboard"
           element={<ProtectedRoute element={<LeadearBoard />} />}
-          exact
+        />
+        <Route
+          path="/battleGround"
+          element={<ProtectedRoute element={<BattleGround />} />}
         />
         <Route path="*" element={<NotFound />} exact />
       </Routes>
