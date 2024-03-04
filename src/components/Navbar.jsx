@@ -10,8 +10,8 @@ const Navbar = () => {
   };
 
   const closeMenu = () => {
-    setMenuOpen(!menuOpen)
-  }
+    setMenuOpen(!menuOpen);
+  };
 
   return (
     <>
@@ -26,17 +26,20 @@ const Navbar = () => {
             </Link>
           </h3>
           <div className="lg:flex lg:flex-row-reverse justify-between text-lg w-[30rem] hidden">
-            <Link to="/user" aria-label="User Profile">
+            <Link to="/userprofile" aria-label="User Profile">
               <UserCircle2 className="w-8 h-8" />
             </Link>
             <a href="/" onClick={handleLogOut} aria-label="Logout">
               Logout
             </a>
-            <Link to="/quiz" aria-label="Quiz">
-              Quiz
+            <Link to="/practice" aria-label="Quiz">
+              Practice
             </Link>
             <Link to="/leaderboard" aria-label="Leaderboard">
               LeaderBoard
+            </Link>
+            <Link to="/battleGround" aria-label="BattleGround">
+              Battle
             </Link>
           </div>
           <button
@@ -59,14 +62,21 @@ const Navbar = () => {
           <button className="lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
             <X className="text-white h-6 w-6 cursor-pointer" />
           </button>
-          <Link to="/user" onClick={closeMenu}>
+          <Link to="/userprofile" onClick={closeMenu}>
             <UserCircle2 className="w-20 h-20" />
           </Link>
           <a href="/" onClick={handleLogOut}>
             Logout
           </a>
-          <Link to="/quiz" onClick={closeMenu}>Quiz</Link>
-          <Link to="/leaderboard" onClick={closeMenu}>Leader-Board</Link>
+          <Link to="/practice" onClick={closeMenu}>
+            Practice
+          </Link>
+          <Link to="/leaderboard" onClick={closeMenu}>
+            Leader-Board
+          </Link>
+          <Link to="/battleGround" aria-label="BattleGround">
+            Battle
+          </Link>
         </div>
       </div>
     </>
