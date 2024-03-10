@@ -2,13 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Loader2, MoreHorizontal } from "lucide-react";
-
-// Get the user's token from local storage
-const token = JSON.parse(localStorage.getItem("token"));
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
   // State variables to manage user data and form input
-  const [user, setUser] = useState({}); // To store user data
+  const [user, setUser] = useState(null); // To store user data
   const [loading, setLoading] = useState(true);
   const [updateLoad, setUpdateLoad] = useState(true);
   const [resetLoad, setResetLoad] = useState(true);
@@ -17,6 +15,10 @@ const UserProfile = () => {
     languageToLearn: "",
     languageFamiliarity: "",
   }); // To manage form data for updating user profile
+
+  const token = JSON.parse(localStorage.getItem("token"));
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getUser(token);
@@ -36,9 +38,11 @@ const UserProfile = () => {
         languageToLearn: response.data.user.languageToLearn,
         languageFamiliarity: response.data.user.languageFamiliarity,
       }); // Populate the form with user data
-      toast.success("User Data retrieved successfully");
+      // toast.success("User Data retrieved successfully");
     } catch (error) {
       toast.error(error);
+      // Redirect to the login page if user data cannot be fetched
+      navigate("/login");
     }
   };
 
@@ -89,6 +93,10 @@ const UserProfile = () => {
       toast.error("Progress reset failed, please try again later.");
     }
   };
+
+  if (!user) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="user-profile bg-gray-100 max-h-screen lg:min-h-screen p-4 font-mono">

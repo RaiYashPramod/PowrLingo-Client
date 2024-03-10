@@ -89,9 +89,7 @@ const Home = () => {
               <br />
               Currently we support English, French, German.
               <br />
-              <span className="text-red-500">
-                Support for more language coming soon!!
-              </span>
+              Support for more language coming soon!!
             </p>
           </div>
         </div>
@@ -102,13 +100,30 @@ const Home = () => {
             Why Use PowrLingo?
           </span>
 
-          <p className="pt-4 lg:pt-8 text-xs lg:text-base text-slate-500 font-mono-regular">Here's what sets us apart</p>
+          <p className="pt-4 lg:pt-8 text-xs lg:text-base text-slate-500 font-mono-regular">
+            Here's what sets us apart
+          </p>
         </div>
 
         <div className="flex flex-col gap-4 md:grid md:grid-cols-3 p-8 lg:pt-16 ">
-          <Card title={"Progress Tracking"} description={"Moniter your Progress with our comprehensive tracking System."}/> 
-          <Card title={"LeaderBoard"} description={"Compete against others for the top place in the leaderboard."}/>
-          <Card title={"BattleGround"} description={"Compete against your friends to show them who's the boss!"}/>
+          <Card
+            title={"Progress Tracking"}
+            description={
+              "Moniter your Progress with our comprehensive tracking System."
+            }
+          />
+          <Card
+            title={"LeaderBoard"}
+            description={
+              "Compete against others for the top place in the leaderboard."
+            }
+          />
+          <Card
+            title={"BattleGround"}
+            description={
+              "Compete against your friends to show them who's the boss!"
+            }
+          />
         </div>
       </section>
       <Footer />

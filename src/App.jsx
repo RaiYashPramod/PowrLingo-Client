@@ -141,7 +141,7 @@ const App = () => {
           path="/login"
           element={
             loggedIn ? (
-              <Navigate to="/" replace={true} />
+              <Navigate to="/userprofile" replace={true} />
             ) : (
               <Login
                 onEmailChange={enterEmail}

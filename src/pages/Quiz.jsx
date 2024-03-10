@@ -29,11 +29,12 @@ const Quiz = () => {
       );
 
       if (response.status === 200) {
-        // If questions are fetched successfully
-        toast.success("Questions fetched successfully!");
+        
         setQuestions(response.data.questions);
         setAnsweredQuestions([]); // Reset the answered questions
         setIsLoading(false); // Set isLoading to false when questions are fetched
+
+        // toast.success("Questions fetched successfully!");
       } else {
         toast.error("Something went wrong!");
       }
