@@ -12,3 +12,8 @@
   font-family: 'AzeretMonoRegular';
   src: url('./src/assets/AzeretMono_Complete/AzeretMono_Complete/Fonts/WEB/fonts/AzeretMono-Regular.woff');
 }
+
+@font-face {
+  font-family: 'AzeretMonoBold';
+  src: url('./src/assets/AzeretMono_Complete/AzeretMono_Complete/Fonts/WEB/fonts/AzeretMono-Bold.woff');
+}

@@ -13,6 +13,7 @@ export default {
       fontFamily: {
         "mono-bold": ['AzeretMonoBlackItalic', 'monospace'],
         'mono-regular': ['AzeretMonoRegular', 'monospace'],
+        "mono-bold2": ['AzeretMonoBold', 'monospace'],
       }
     },
   },
