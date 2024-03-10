@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { UserCircle2, Menu as MenuIcon, X } from "lucide-react";
 import { useState } from "react";
+import logo from './../assets/logo.png'
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -21,15 +22,20 @@ const Navbar = () => {
       >
         <div className="flex flex-row justify-between items-center">
           <h3 className="text-white font-mono text-xl">
-            <Link to="/" aria-label="Home">
-              PowrLingo
+            <Link to="/" aria-label="Home" className="flex">
+              <img
+                src={logo}
+                alt="logo"
+                className="w-12 h-12"
+              />
+              <h1 className="px-4 text-4xl">PowrLingo</h1>
             </Link>
           </h3>
-          <div className="lg:flex lg:flex-row-reverse justify-between text-lg w-[30rem] hidden">
+          <div className="lg:flex lg:flex-row-reverse justify-between text-xl w-[40rem] hidden">
             <Link to="/userprofile" aria-label="User Profile">
               <UserCircle2 className="w-8 h-8" />
             </Link>
-            <a href="/" onClick={handleLogOut} aria-label="Logout">
+            <a href="/" onClick={handleLogOut} aria-label="Logout" className="bg-gray-light text-black w-32 h-8 text-center rounded-md">
               Logout
             </a>
             <Link to="/practice" aria-label="Quiz">
@@ -74,7 +80,7 @@ const Navbar = () => {
           <Link to="/leaderboard" onClick={closeMenu}>
             Leader-Board
           </Link>
-          <Link to="/battleGround" aria-label="BattleGround">
+          <Link to="/battleGround" aria-label="BattleGround" onClick={closeMenu}>
             Battle
           </Link>
         </div>

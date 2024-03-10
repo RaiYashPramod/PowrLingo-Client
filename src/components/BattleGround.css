@@ -9,10 +9,10 @@
 }
 
 .main:before {
-  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #fafafa 100%);
-  position: absolute;
+  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #fafafa 10%);
+  position: relative;
   content: "";
-  z-index: 2;
+  z-index: 0;
   width: 100%;
   height: 100%;
   top: 0;
@@ -26,7 +26,7 @@
   width: 100%;
   height: 100%;
   top: 0;
-  opacity: 4;
+  opacity: 1;
   filter: invert(1);
 }
 
@@ -56,6 +56,6 @@
 }
 
 .content {
-  position: relative;
-  z-index: 4;
+  position: absolute;
+  z-index: 0;
 }
