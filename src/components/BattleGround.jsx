@@ -16,10 +16,10 @@ const BattleGround = () => {
         {/* Background image */}
         <img src={Grid} alt="bg-grid" className="cover" />
       </div>
-      <div className="content">
+      <div>
         <h3 className="pt-9 text-3xl lg:text-6xl text-center font-mono font-extrabold sm:font-normal">
           Welcome to <br />
-          <span className="text-5xl text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-pink-700 lg:text-8xl">
+          <span className="font-mono-bold text-5xl text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-pink-700 lg:text-8xl">
             BattleGround
           </span>
         </h3>
@@ -38,9 +38,9 @@ const BattleGround = () => {
             Create Room
           </button>
         </div>
-        <div className="flex justify-center font-mono font-extrabold text-red-800 pt-6 text-6xl">
+        <div className="flex justify-center font-mono font-extrabold text-red-800 pt-6 text-3xl lg:text-6xl">
         Feature Still Under Development!!!
-      </div>
+        </div>
       </div>
       
     </>
@@ -48,3 +48,4 @@ const BattleGround = () => {
 };
 
 export default BattleGround;
+
