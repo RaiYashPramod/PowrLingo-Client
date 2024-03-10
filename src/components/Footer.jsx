@@ -19,7 +19,7 @@ const Footer = () => {
   return (
     <footer className="p-12 sm:mb-0 bg-black text-neutral-500 ">
       <div className="border-b border-b-dim-gray lg:-mt-10 pb-6 lg:p-0">
-        <h3 className="font-mono-bold2 opacity-70 text-7xl md:text-[15rem] mt-0 flex justify-center items-center">
+        <h3 className="font-mono-bold2 opacity-70 text-6xl md:text-[15rem] mt-0 flex justify-center items-center">
           POWRLINGO
         </h3>
       </div>
