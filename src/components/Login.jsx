@@ -4,9 +4,20 @@ import backgroundImage from "../assets/loginbg.jpg";
 import { useState } from "react";
 
 const Login = (props) => {
-  const handleDemoLogin  = () => {
-    props.onSubmit()
-  }
+  const [demoLoading, setDemoLoading] = useState(false);
+
+  const handleDemoLogin = async () => {
+    try {
+      setDemoLoading(true); // Start the demo login loading
+      const demoEmail = "demo@gmail.com";
+      const demoPassword = "rai";
+      await props.signIn(demoEmail, demoPassword);
+    } catch (error) {
+      console.error("Demo login error:", error);
+    } finally {
+      setDemoLoading(false); // Stop the demo login loading
+    }
+  };
   return (
     <>
       <div
@@ -51,8 +62,12 @@ const Login = (props) => {
           </form>
         </section>
         <section className="p-4 border-t-[0.07rem] border-black mt-4">
-          <button className="w-80 p-4 bg-black text-white rounded-md font-mono flex justify-center items-center" onClick={handleDemoLogin}> 
-            {props.loading ? <Loader /> : "Demo Login"}
+          <button
+            className="w-80 p-4 bg-black text-white rounded-md font-mono flex justify-center items-center"
+            onClick={handleDemoLogin}
+            disabled={demoLoading} // Disable the demo login button while loading
+          >
+            {demoLoading ? <Loader /> : "Demo Login"}
           </button>
         </section>
       </div>

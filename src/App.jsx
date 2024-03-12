@@ -73,7 +73,6 @@ const App = () => {
 
   // Function to handle user sign-in
   const signIn = async (email, password) => {
-    setLoginLoading(true);
     try {
       const res = await axios.post(
         `https://pear-lucky-panda.cyclic.cloud/api/users/login`,
@@ -113,15 +112,20 @@ const App = () => {
 
   // Function to handle email submission
   const formSubmit = (e) => {
-    if (userEmail && userPassword) {
-      signIn(userEmail, userPassword);
-      setUserEmail("");
-      setUserPassword("");
+    e.preventDefault(); // Prevent page refresh on form submission
+    // If user email and password are entered, sign in the user
+    // Otherwise, display an error toast
+    
+    if (!userEmail) {
+      toast.error("Please enter your email");
+    } else if (!userPassword) {
+      toast.error("Please enter your password");
     } else {
-      signIn("demo@gmail.com", "rai");
+      setLoginLoading(true);
+      signIn(userEmail, userPassword);
     }
   };
-
+  
   // While loading, display a loading message
   if (loading) {
     return <Loading />;
@@ -150,6 +154,7 @@ const App = () => {
                 email={userEmail}
                 password={userPassword}
                 loading={loginLoading}
+                signIn={signIn}
               />
             )
           }

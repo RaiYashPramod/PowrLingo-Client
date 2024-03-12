@@ -1,6 +1,6 @@
 import React from "react";
 import Grid from "../assets/grid.svg";
-import "./BattleGround.css";
+import "../App.css";
 import OtpInput from "react-otp-input";
 import { useState } from "react";
 
