@@ -100,7 +100,7 @@ const Home = () => {
             Why Use PowrLingo?
           </span>
 
-          <p className="pt-4 lg:pt-8 text-xs lg:text-base text-slate-500 font-mono-regular">
+          <p className="pt-4 lg:pt-8 text-sm lg:text-base text-slate-500 font-mono-regular">
             Here's what sets us apart
           </p>
         </div>

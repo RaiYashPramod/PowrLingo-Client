@@ -38,13 +38,13 @@ const Navbar = () => {
             <a href="/" onClick={handleLogOut} aria-label="Logout" className="bg-gray-light text-black w-32 h-8 text-center rounded-md">
               Logout
             </a>
-            <Link to="/practice" aria-label="Quiz">
+            <Link to="/practice" aria-label="Quiz" className="lg:hover:border-b-2">
               Practice
             </Link>
-            <Link to="/leaderboard" aria-label="Leaderboard">
+            <Link to="/leaderboard" aria-label="Leaderboard" className="lg:hover:border-b-2">
               LeaderBoard
             </Link>
-            <Link to="/battleGround" aria-label="BattleGround">
+            <Link to="/battleGround" aria-label="BattleGround" className="lg:hover:border-b-2">
               Battle
             </Link>
           </div>

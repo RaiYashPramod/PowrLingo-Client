@@ -95,7 +95,7 @@ const UserProfile = () => {
   };
 
   if (!user) {
-    return <div>Loading...</div>;
+    return <div className="flex justify-center items-center h-screen"><Loader2 className="w-10 h-10"/></div>;
   }
 
   return (
@@ -233,7 +233,7 @@ const UserProfile = () => {
           </div>
         </>
       ) : (
-        <div className="text-center">Loading...</div>
+        <div className="text-center">Loa</div>
       )}
     </div>
   );
