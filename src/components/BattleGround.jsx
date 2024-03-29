@@ -1,7 +1,6 @@
 import React from "react";
 import Grid from "../assets/grid.svg";
 import "../App.css";
-import OtpInput from "react-otp-input";
 import { useState } from "react";
 
 const BattleGround = () => {
@@ -9,11 +8,11 @@ const BattleGround = () => {
   
   return (
     <>
-      {/* <img src={Grid} alt="bg-grid" className='cover'/> */}
+      
       <div className="main">
-        {/* Background gradient */}
+        
         <div className="gradient"></div>
-        {/* Background image */}
+        
         <img src={Grid} alt="bg-grid" className="cover" />
       </div>
       <div>
@@ -42,7 +41,6 @@ const BattleGround = () => {
         Feature Still Under Development!!!
         </div>
       </div>
-      
     </>
   );
 };

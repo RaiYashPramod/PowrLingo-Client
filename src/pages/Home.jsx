@@ -60,7 +60,7 @@ const Home = () => {
           <span className="text-xl lg:text-4xl font-mono-bold">
             Challenge your friend in a 1v1 battle.
           </span>
-          <p className="text-xs lg:text-sm font-mono-regular text-slate-500 p-2">
+          <p className="text-xs lg:text-lg font-mono-regular text-slate-500 p-2">
             A place for you to test and compete your learnings against your
             friends{" "}
           </p>
@@ -84,7 +84,7 @@ const Home = () => {
             <span className="text-xl lg:text-4xl font-mono-bold">
               Multi-Lingual Support
             </span>
-            <p className="text-xs lg:text-sm font-mono-regular text-slate-500 p-2">
+            <p className="text-xs lg:text-lg font-mono-regular text-slate-500 p-2">
               You can practice in three language based on your preference.
               <br />
               Currently we support English, French, German.
@@ -100,7 +100,7 @@ const Home = () => {
             Why Use PowrLingo?
           </span>
 
-          <p className="pt-4 lg:pt-8 text-sm lg:text-base text-slate-500 font-mono-regular">
+          <p className="pt-4 lg:pt-8 text-sm lg:text-lg text-slate-500 font-mono-regular">
             Here's what sets us apart
           </p>
         </div>
