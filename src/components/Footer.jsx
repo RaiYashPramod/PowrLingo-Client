@@ -40,7 +40,7 @@ const Footer = () => {
           </a>
         </div>
 
-        <ul className=" grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 grid gap-x-1 gap-y-3 pt-8 md:pt-0 font-mono-regular">
+        <ul className="lg:flex grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-x-12 gap-y-3 pt-8 md:pt-0 font-mono-regular">
           {links.map((link) => (
             <li
               key={link.id}

@@ -95,7 +95,11 @@ const UserProfile = () => {
   };
 
   if (!user) {
-    return <div className="flex justify-center items-center h-screen"><Loader2 className="w-10 h-10"/></div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Loader2 className="w-10 h-10" />
+      </div>
+    );
   }
 
   return (
@@ -183,6 +187,9 @@ const UserProfile = () => {
               >
                 {updateLoad ? "Update Profile" : <Loader2 />}
               </button>
+              <span className="text-yellow-500">
+                -You can make changes in place
+              </span>
             </form>
           </div>
 

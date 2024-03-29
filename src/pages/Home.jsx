@@ -21,7 +21,7 @@ const Home = () => {
             <></>
           ) : (
             <a href="/login" className="block m-8">
-              <button className="p-3 w-40 bg-black text-white rounded-md font-mono font-bold hover:bg-gray-800">
+              <button className="p-3 w-40 bg-black text-white rounded-md font-mono font-bold transition duration-200 ease-in-out transform hover:scale-105 hover:shadow-2xl hover:shadow-black">
                 Login
               </button>
             </a>

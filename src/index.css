@@ -4,16 +4,16 @@
 
 @font-face {
   font-family: 'AzeretMonoBlackItalic';
-  src: url('./src/assets/AzeretMono_Complete/AzeretMono_Complete/Fonts/WEB/fonts/AzeretMono-BlackItalic.woff2');
+  src: url('./AzeretMono_Complete/AzeretMono_Complete/Fonts/WEB/fonts/AzeretMono-BlackItalic.woff2');
 }
 
 
 @font-face {
   font-family: 'AzeretMonoRegular';
-  src: url('./src/assets/AzeretMono_Complete/AzeretMono_Complete/Fonts/WEB/fonts/AzeretMono-Regular.woff');
+  src: url('./AzeretMono_Complete/AzeretMono_Complete/Fonts/WEB/fonts/AzeretMono-Regular.woff');
 }
 
 @font-face {
   font-family: 'AzeretMonoBold';
-  src: url('./src/assets/AzeretMono_Complete/AzeretMono_Complete/Fonts/WEB/fonts/AzeretMono-Bold.woff');
+  src: url('./AzeretMono_Complete/AzeretMono_Complete/Fonts/WEB/fonts/AzeretMono-Bold.woff');
 }
