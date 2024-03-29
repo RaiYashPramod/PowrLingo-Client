@@ -14,10 +14,9 @@ import Navbar from "./components/Navbar";
 import Quiz from "./pages/Quiz";
 import AddQuestion from "./pages/AddQuestion";
 import LeadearBoard from "./pages/LeadearBoard";
-import PropTypes from "prop-types";
 import NotFound from "./pages/NotFound";
 import Loading from "./components/Loading";
-import BattleGround from "./components/BattleGround";
+import BattleGround from "./pages/BattleGround";
 
 
 const App = () => {

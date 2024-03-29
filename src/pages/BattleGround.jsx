@@ -2,17 +2,19 @@ import React from "react";
 import Grid from "../assets/grid.svg";
 import "../App.css";
 import { useState } from "react";
+import JoinBattleModal from "../components/BattleModal/JoinBattleModal";
+import CreateBattleModal from "../components/BattleModal/CreateBattleModal";
 
 const BattleGround = () => {
-  const [roomCode, setRoomCode] = useState("");
-  
+  const [showJoinModal, setShowJoinModal] = useState(false);
+  const toggleJoinModal = () => setShowJoinModal(!showJoinModal);
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const toggleCreateModal = () => setShowCreateModal(!showCreateModal);
+
   return (
     <>
-      
       <div className="main">
-        
         <div className="gradient"></div>
-        
         <img src={Grid} alt="bg-grid" className="cover" />
       </div>
       <div>
@@ -27,23 +29,28 @@ const BattleGround = () => {
         </div>
 
         <div className="flex items-center justify-center mt-6">
-          <button className="w-60 h-10 rounded-md bg-orange-600 text-white font-mono font-bold">
+          <button className="w-60 h-10 rounded-md bg-orange-600 text-white font-mono font-bold relative" onClick={toggleCreateModal}>
+            Create Battle
+          </button>
+        </div>
+        <span className="font-mono text-black flex justify-center text-xl font-bold">
+          OR
+        </span>
+        <div className="flex items-center justify-center">
+          <button className="w-60 h-10 rounded-md bg-orange-600 text-white font-mono font-bold relative" onClick={toggleJoinModal}>
             Join
           </button>
         </div>
-        <span className="font-mono text-black flex justify-center text-xl font-bold">OR</span>
-        <div className="flex items-center justify-center">
-          <button className="w-60 h-10 rounded-md bg-orange-600 text-white font-mono font-bold">
-            Create Room
-          </button>
-        </div>
         <div className="flex justify-center font-mono font-extrabold text-red-800 pt-6 text-3xl lg:text-6xl">
-        Feature Still Under Development!!!
+          Feature Still Under Development!!!
         </div>
       </div>
+
+      <CreateBattleModal showModal={showCreateModal} toggleModal={toggleCreateModal} />
+
+      <JoinBattleModal showModal={showJoinModal} toggleModal={toggleJoinModal} />
     </>
   );
 };
 
 export default BattleGround;
-
