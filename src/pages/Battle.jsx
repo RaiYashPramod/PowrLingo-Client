@@ -15,7 +15,7 @@ const Battle = () => {
       if (!battleId) return; // Check if battleId exists
 
       const response = await axios.get(
-        `http://localhost:3000/api/battle/getbattle/${battleId}`
+        `https://pear-lucky-panda.cyclic.cloud/api/battle/getbattle/${battleId}`
       );
       console.log(response);
       if (response.status === 200) {

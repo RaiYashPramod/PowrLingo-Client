@@ -23,7 +23,7 @@ const CreateBattleModal = ({ showModal, toggleModal }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/battle/create",
+        "https://pear-lucky-panda.cyclic.cloud/api/battle/create",
         { numOfQuestions: numQuestions }
       );
       if (response.status === 201) {
