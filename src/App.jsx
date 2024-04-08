@@ -17,7 +17,7 @@ import LeadearBoard from "./pages/LeadearBoard";
 import NotFound from "./pages/NotFound";
 import Loading from "./components/Loading";
 import BattleGround from "./pages/BattleGround";
-
+import Battle from "./pages/Battle";
 
 const App = () => {
   // State variables
@@ -114,7 +114,7 @@ const App = () => {
     e.preventDefault(); // Prevent page refresh on form submission
     // If user email and password are entered, sign in the user
     // Otherwise, display an error toast
-    
+
     if (!userEmail) {
       toast.error("Please enter your email");
     } else if (!userPassword) {
@@ -124,7 +124,7 @@ const App = () => {
       signIn(userEmail, userPassword);
     }
   };
-  
+
   // While loading, display a loading message
   if (loading) {
     return <Loading />;
@@ -176,8 +176,12 @@ const App = () => {
           element={<ProtectedRoute element={<LeadearBoard />} />}
         />
         <Route
-          path="/battleGround"
+          path="/battle"
           element={<ProtectedRoute element={<BattleGround />} />}
+        />
+        <Route
+          path="/battle/:battleId"
+          element={<ProtectedRoute element={<Battle />} />}
         />
         <Route path="*" element={<NotFound />} exact />
       </Routes>

@@ -4,6 +4,7 @@ import "../App.css";
 import { useState } from "react";
 import JoinBattleModal from "../components/BattleModal/JoinBattleModal";
 import CreateBattleModal from "../components/BattleModal/CreateBattleModal";
+import OnGoingBattle from "../components/OnGoingBattle";
 
 const BattleGround = () => {
   const [showJoinModal, setShowJoinModal] = useState(false);
@@ -21,7 +22,7 @@ const BattleGround = () => {
         <h3 className="pt-9 text-3xl lg:text-6xl text-center font-mono font-extrabold sm:font-normal">
           Welcome to <br />
           <span className="font-mono-bold text-5xl text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-pink-700 lg:text-8xl">
-            BattleGround
+            Battle-Ground
           </span>
         </h3>
         <div className="text-center pt-5 text-2xl lg:text-4xl font-mono font-semibold">
@@ -29,7 +30,7 @@ const BattleGround = () => {
         </div>
 
         <div className="flex items-center justify-center mt-6">
-          <button className="w-60 h-10 rounded-md bg-orange-600 text-white font-mono font-bold relative" onClick={toggleCreateModal}>
+          <button className="w-60 h-10 rounded-md bg-orange-600 text-white font-mono font-bold" onClick={toggleCreateModal}>
             Create Battle
           </button>
         </div>
@@ -37,18 +38,18 @@ const BattleGround = () => {
           OR
         </span>
         <div className="flex items-center justify-center">
-          <button className="w-60 h-10 rounded-md bg-orange-600 text-white font-mono font-bold relative" onClick={toggleJoinModal}>
+          <button className="w-60 h-10 rounded-md bg-orange-600 text-white font-mono font-bold" onClick={toggleJoinModal}>
             Join
           </button>
-        </div>
-        <div className="flex justify-center font-mono font-extrabold text-red-800 pt-6 text-3xl lg:text-6xl">
-          Feature Still Under Development!!!
         </div>
       </div>
 
       <CreateBattleModal showModal={showCreateModal} toggleModal={toggleCreateModal} />
-
       <JoinBattleModal showModal={showJoinModal} toggleModal={toggleJoinModal} />
+
+      <div className="p-10">
+        <OnGoingBattle />
+      </div>
     </>
   );
 };

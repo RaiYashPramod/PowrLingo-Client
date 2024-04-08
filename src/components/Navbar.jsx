@@ -44,7 +44,7 @@ const Navbar = () => {
             <Link to="/leaderboard" aria-label="Leaderboard" className="lg:hover:border-b-2 transition duration-300 ease-in-out">
               LeaderBoard
             </Link>
-            <Link to="/battleGround" aria-label="BattleGround" className="lg:hover:border-b-2 transition duration-300 ease-in-out">
+            <Link to="/battle" aria-label="BattleGround" className="lg:hover:border-b-2 transition duration-300 ease-in-out">
               Battle
             </Link>
           </div>
@@ -80,7 +80,7 @@ const Navbar = () => {
           <Link to="/leaderboard" onClick={closeMenu}>
             Leader-Board
           </Link>
-          <Link to="/battleGround" aria-label="BattleGround" onClick={closeMenu}>
+          <Link to="/battle" aria-label="BattleGround" onClick={closeMenu}>
             Battle
           </Link>
         </div>
