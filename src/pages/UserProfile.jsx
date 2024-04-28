@@ -29,8 +29,8 @@ const UserProfile = () => {
     try {
       // Fetch user data from the server using the token
       const response = await axios.get(
-        "http://localhost:3000/api/users/getuser"
-        // "https://pear-lucky-panda.cyclic.cloud/api/users/getuser"
+        // "http://localhost:3000/api/users/getuser"
+        "https://pear-lucky-panda.cyclic.cloud/api/users/getuser"
       );
       setUser(response.data.user); // Set user data in state
       setLoading(false);

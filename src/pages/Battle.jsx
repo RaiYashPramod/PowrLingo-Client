@@ -24,8 +24,8 @@ const Battle = () => {
       if (!battleId) return;
 
       const response = await axios.get(
-        `http://localhost:3000/api/battle/getbattle/${battleId}`
-        // `https://pear-lucky-panda.cyclic.cloud/api/battle/getbattle/${battleId}`
+        // `http://localhost:3000/api/battle/getbattle/${battleId}`
+        `https://pear-lucky-panda.cyclic.cloud/api/battle/getbattle/${battleId}`
       );
 
       if (response.status === 200) {
@@ -53,8 +53,8 @@ const Battle = () => {
   const getUserDetails = async (id) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/users/getuserdetails/${id}`
-        // `https://pear-lucky-panda.cyclic.cloud/api/users/getuserdetails/${id}`
+        // `http://localhost:3000/api/users/getuserdetails/${id}`
+        `https://pear-lucky-panda.cyclic.cloud/api/users/getuserdetails/${id}`
       );
       return response.data.user;
     } catch (error) {
@@ -67,8 +67,8 @@ const Battle = () => {
     axios.defaults.headers.common["Authorization"] = token;
     try {
       const response = await axios.get(
-        "http://localhost:3000/api/users/getuser"
-        // "https://pear-lucky-panda.cyclic.cloud/api/users/getuser"
+        // "http://localhost:3000/api/users/getuser"
+        "https://pear-lucky-panda.cyclic.cloud/api/users/getuser"
       );
       setCurrentPlayer(response.data.user);
       // Set the initial turn based on the challenger of the battle
@@ -83,7 +83,8 @@ const Battle = () => {
     try {
       console.log(answers)
       const response = axios.post(
-        `http://localhost:3000/api/battle/changeturn/${battleId}`,
+        // `http://localhost:3000/api/battle/changeturn/${battleId}`,
+        `https://pear-lucky-panda.cyclic.cloud/api/battle/changeturn/${battleId}`,
         { challenger: nextTurn }
       );
 
@@ -103,7 +104,8 @@ const Battle = () => {
     axios.defaults.headers.common["Authorization"] = token;
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/battle/fetchQuestions/${battleId}`
+        // `http://localhost:3000/api/battle/fetchQuestions/${battleId}`
+        `https://pear-lucky-panda.cyclic.cloud/api/battle/fetchQuestions/${battleId}`
       );
 
       console.log(response.data.randomQuestions);

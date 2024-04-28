@@ -14,8 +14,8 @@ const OnGoingBattle = () => {
       axios.defaults.headers.common["Authorization"] = token;
 
       const response = await axios.get(
-        "http://localhost:3000/api/battle/ongoingbattle"
-        // "https://pear-lucky-panda.cyclic.cloud/api/battle/ongoingbattle"
+        // "http://localhost:3000/api/battle/ongoingbattle"
+        "https://pear-lucky-panda.cyclic.cloud/api/battle/ongoingbattle"
       );
 
       if (response.status === 200) {
@@ -32,8 +32,8 @@ const OnGoingBattle = () => {
     try {
       setIsLoading(true);
       const response = await axios.get(
-        `http://localhost:3000/api/users/getuserdetails/${id}`
-        // `https://pear-lucky-panda.cyclic.cloud/api/users/getuserdetails/${id}`
+        // `http://localhost:3000/api/users/getuserdetails/${id}`
+        `https://pear-lucky-panda.cyclic.cloud/api/users/getuserdetails/${id}`
       );
       setUserDetails((prevState) => ({
         ...prevState,
