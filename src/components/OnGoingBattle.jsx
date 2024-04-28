@@ -6,7 +6,7 @@ const OnGoingBattle = () => {
   const [battle, setBattle] = useState();
   const [userDetails, setUserDetails] = useState({});
   const [position, setPosition] = useState(0);
-
+  const [isloading, setIsLoading] = useState(false);
 
   const onGoingBattles = async () => {
     try {
@@ -14,7 +14,8 @@ const OnGoingBattle = () => {
       axios.defaults.headers.common["Authorization"] = token;
 
       const response = await axios.get(
-        "https://pear-lucky-panda.cyclic.cloud/api/battle/ongoingbattle"
+        "http://localhost:3000/api/battle/ongoingbattle"
+        // "https://pear-lucky-panda.cyclic.cloud/api/battle/ongoingbattle"
       );
 
       if (response.status === 200) {
@@ -29,19 +30,20 @@ const OnGoingBattle = () => {
 
   const getUserDetails = async (id) => {
     try {
+      setIsLoading(true);
       const response = await axios.get(
-        `https://pear-lucky-panda.cyclic.cloud/api/users/getuserdetails/${id}`
+        `http://localhost:3000/api/users/getuserdetails/${id}`
+        // `https://pear-lucky-panda.cyclic.cloud/api/users/getuserdetails/${id}`
       );
       setUserDetails((prevState) => ({
         ...prevState,
         [id]: response.data.user, // Store user details in state with user ID as key
       }));
-      // console.log(response.data);
-      console.log(userDetails);
+      // console.log(userDetails);
     } catch (error) {
       console.error(error);
-      // Handle error if needed
     }
+    setIsLoading(false);
   };
 
   const toBattle = () => {
@@ -51,7 +53,6 @@ const OnGoingBattle = () => {
   useEffect(() => {
     onGoingBattles();
   }, []);
-
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -63,7 +64,7 @@ const OnGoingBattle = () => {
 
   return (
     <>
-      <div>
+      <div className="flex justify-center m-4">
         {!battle ? (
           // <div className="font-mono-bold2 text-lg">No ongoing battle</div>
           <div className="overflow-hidden whitespace-nowrap">
@@ -71,45 +72,20 @@ const OnGoingBattle = () => {
               className="inline-block font-mono-bold2 text-lg animate-marquee w-screen"
               style={{ transform: `translateX(${-position}px)` }}
             >
-              <span>No ongoing battle</span>
-              {" "}
-              <span>No ongoing battle</span>
-              {" "}
-              <span>No ongoing battle</span>
-              {" "}
-              <span>No ongoing battle</span>
-              {" "}
-              <span>No ongoing battle</span>
-              {" "}            
-              <span>No ongoing battle</span>
-              {" "}            
-              <span>No ongoing battle</span>
-              {" "}            
-              <span>No ongoing battle</span>
-              {" "}            
-              <span>No ongoing battle</span>
-              {" "}            
-              <span>No ongoing battle</span>
-              {" "}            
-              <span>No ongoing battle</span>
-              {" "}            
-              <span>No ongoing battle</span>
-              {" "}            
-              <span>No ongoing battle</span>
-              {" "}            
-              <span>No ongoing battle</span>
-              {" "}            
-              <span>No ongoing battle</span>
-              {" "}            
-              <span>No ongoing battle</span>
-              {" "}            
-              <span>No ongoing battle</span>
-              {" "}            
+              <span>No ongoing battle</span> <span>No ongoing battle</span>{" "}
+              <span>No ongoing battle</span> <span>No ongoing battle</span>{" "}
+              <span>No ongoing battle</span> <span>No ongoing battle</span>{" "}
+              <span>No ongoing battle</span> <span>No ongoing battle</span>{" "}
+              <span>No ongoing battle</span> <span>No ongoing battle</span>{" "}
+              <span>No ongoing battle</span> <span>No ongoing battle</span>{" "}
+              <span>No ongoing battle</span> <span>No ongoing battle</span>{" "}
+              <span>No ongoing battle</span> <span>No ongoing battle</span>{" "}
+              <span>No ongoing battle</span>{" "}
             </div>
           </div>
         ) : (
           <div
-            className="bg-white rounded-lg shadow-md p-4 absolute cursor-pointer"
+            className="bg-black text-white rounded-lg shadow-md p-4 absolute cursor-pointer max-w-lg flex flex-col"
             onClick={() => toBattle()}
           >
             <div>
@@ -118,7 +94,7 @@ const OnGoingBattle = () => {
                   <React.Fragment key={userId}>
                     {userDetails[userId] && (
                       <>
-                        <h1>{userDetails[userId].Name}</h1>
+                        <h1>{isloading ? "..." : userDetails[userId].Name}</h1>
                         {battle.participants.indexOf(userId) !==
                           battle.participants.length - 1 && (
                           <span className="mx-2">VS</span>
@@ -134,9 +110,11 @@ const OnGoingBattle = () => {
             </h3>
             <div className="flex items-center">
               <div className="text-green-500 animate-pulse h-2 w-2 bg-green-500 rounded-full mr-2"></div>
-              <p className="text-sm">Status: {battle?.status}</p>
+              <p className="text-sm font-mono-regular">
+                Status: {battle?.status}
+              </p>
             </div>
-            <p className="text-sm">
+            <p className="text-sm font-mono-regular">
               Number of Questions: {battle?.numOfQuestions}
             </p>
           </div>

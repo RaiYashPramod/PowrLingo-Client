@@ -2,7 +2,6 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { redirect } from "react-router-dom";
 
 const JoinBattleModal = ({ showModal, toggleModal }) => {
   const [battleID, setBattleID] = useState('');

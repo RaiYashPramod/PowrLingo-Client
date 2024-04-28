@@ -30,12 +30,12 @@ const LeadearBoard = () => {
       <div className="bg-gray-100">
         <span className="font-mono-regular text-xs"><span className="underline">Bonus Tips:</span> Update your name in order to appear on the leaderboard.</span>
       </div>
-      <div className="flex flex-col items-center bg-gray-100 font-mono min-h-screen">
-        <h3 className="p-6 text-4xl font-extrabold">LeaderBoard</h3>
+      <div className="flex flex-col items-center bg-gray-100 min-h-screen">
+        <h3 className="p-6 text-4xl font-mono-bold2">LeaderBoard</h3>
         {data.leaderboard ? (
           // Map through the leaderboard data and render RankingCard components
           data.leaderboard.map((userData, index) => (
-            <div className="py-4 mx-auto" key={userData.UUI}>
+            <div className="py-4 mx-auto font-mono-regular" key={userData.UUI}>
               {userData.Name != "Anonymous" ? (
                 <RankingCard
                   rank={index + 1} // Calculate and display the rank

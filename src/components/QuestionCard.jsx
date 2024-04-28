@@ -66,7 +66,8 @@ const QuestionCard = ({ question, onAnswer, isAnswered }) => {
 
     try {
       const response = await axios.post(
-        "https://pear-lucky-panda.cyclic.cloud/api/questions/answer",
+        "http://localhost:3000/api/questions/answer",
+        // "https://pear-lucky-panda.cyclic.cloud/api/questions/answer",
         answerData
       );
 

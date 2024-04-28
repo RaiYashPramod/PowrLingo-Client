@@ -7,6 +7,7 @@ import tick from "../../assets/tick.svg";
 
 const CreateBattleModal = ({ showModal, toggleModal }) => {
   const [numQuestions, setNumQuestions] = useState(5); // Default number of questions
+  const [questionLang, setQuestionLang] = useState(); // Default number of questions
   const [loading, setLoading] = useState(false);
   const [battleCode, setBattleCode] = useState("");
   const [copied, setCopied] = useState("");
@@ -14,6 +15,10 @@ const CreateBattleModal = ({ showModal, toggleModal }) => {
   const handleNumQuestionsChange = (e) => {
     setNumQuestions(e.target.value);
   };
+
+  const handleQuestionLangChange = (e) => {
+    setQuestionLang(e.target.value);
+  }
 
   const createBattle = async () => {
     setLoading(true); // Set loading to true to show loader
@@ -23,8 +28,12 @@ const CreateBattleModal = ({ showModal, toggleModal }) => {
 
     try {
       const response = await axios.post(
-        "https://pear-lucky-panda.cyclic.cloud/api/battle/create",
-        { numOfQuestions: numQuestions }
+        "http://localhost:3000/api/battle/create",
+        // "https://pear-lucky-panda.cyclic.cloud/api/battle/create",
+        { 
+          numOfQuestions: numQuestions,
+          language: questionLang,
+        }
       );
       if (response.status === 201) {
         // Check for correct status code
@@ -105,6 +114,25 @@ const CreateBattleModal = ({ showModal, toggleModal }) => {
                     <option value={10}>10</option>
                     <option value={15}>15</option>
                     <option value={20}>20</option>
+                  </select>
+                </div>
+                <div className="mb-4">
+                  <label
+                    htmlFor="numQuestions"
+                    className="block mb-2 font-mono-bold"
+                  >
+                    Language of Questions
+                  </label>
+                  <select
+                    id="questionLang"
+                    value={questionLang}
+                    onChange={handleQuestionLangChange}
+                    className="block w-full border border-gray-300 rounded-md px-4 py-2 outline-none font-mono"
+                  >
+                    <option value={"English"}>English</option>
+                    <option value={"German"}>German</option>
+                    <option value={"French"}>French</option>
+                    {/* <option value={20}>20</option> */}
                   </select>
                 </div>
                 {loading ? (
