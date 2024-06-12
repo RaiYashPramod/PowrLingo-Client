@@ -25,7 +25,7 @@ const Quiz = () => {
     axios.defaults.headers.common["Authorization"] = token;
     try {
       const response = await axios.get(
-        `https://pear-lucky-panda.cyclic.cloud/api/questions/get-questions`
+        `https://powrlingo-server.onrender.com/api/questions/get-questions`
       );
 
       if (response.status === 200) {

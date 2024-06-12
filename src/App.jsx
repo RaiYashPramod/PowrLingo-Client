@@ -41,7 +41,7 @@ const App = () => {
       // Set the Authorization header with the token
       axios.defaults.headers.common["Authorization"] = token;
       const response = await axios.post(
-        `https://pear-lucky-panda.cyclic.cloud/api/users/verify`
+        `https://powrlingo-server.onrender.com/api/users/verify`
       );
 
       // If the token is valid, log the user in; otherwise, log them out
@@ -74,7 +74,7 @@ const App = () => {
   const signIn = async (email, password) => {
     try {
       const res = await axios.post(
-        `https://pear-lucky-panda.cyclic.cloud/api/users/login`,
+        `https://powrlingo-server.onrender.com/api/users/login`,
         {
           email,
           password,

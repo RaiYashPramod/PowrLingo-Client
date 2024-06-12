@@ -30,7 +30,7 @@ const UserProfile = () => {
       // Fetch user data from the server using the token
       const response = await axios.get(
         // "http://localhost:3000/api/users/getuser"
-        "https://pear-lucky-panda.cyclic.cloud/api/users/getuser"
+        "https://powrlingo-server.onrender.com/api/users/getuser"
       );
       setUser(response.data.user); // Set user data in state
       setLoading(false);
@@ -60,7 +60,7 @@ const UserProfile = () => {
 
       // Send a PATCH request to update the user's profile on the server
       const response = await axios.patch(
-        "https://pear-lucky-panda.cyclic.cloud/api/users/updateprofile",
+        "https://powrlingo-server.onrender.com/api/users/updateprofile",
         formData
       );
 
@@ -84,7 +84,7 @@ const UserProfile = () => {
     setResetLoad(false);
     axios.defaults.headers.common["Authorization"] = token; // Set the Authorization header with the token
     const response = await axios.patch(
-      "https://pear-lucky-panda.cyclic.cloud/api/users/resetprogress"
+      "https://powrlingo-server.onrender.com/api/users/resetprogress"
     );
     if (response.data.ok) {
       getUser(token);

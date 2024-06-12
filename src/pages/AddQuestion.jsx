@@ -28,7 +28,7 @@ const AddQuestion = () => {
 
   const handleAddQuestion = async () => {
     const response = await axios.post(
-      "https://pear-lucky-panda.cyclic.cloud/api/questions/add-question",
+      "https://powrlingo-server.onrender.com/api/questions/add-question",
       question
     );
     if (response) {

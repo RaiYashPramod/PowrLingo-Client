@@ -15,7 +15,7 @@ const OnGoingBattle = () => {
 
       const response = await axios.get(
         // "http://localhost:3000/api/battle/ongoingbattle"
-        "https://pear-lucky-panda.cyclic.cloud/api/battle/ongoingbattle"
+        "https://powrlingo-server.onrender.com/api/battle/ongoingbattle"
       );
 
       if (response.status === 200) {
@@ -33,7 +33,7 @@ const OnGoingBattle = () => {
       setIsLoading(true);
       const response = await axios.get(
         // `http://localhost:3000/api/users/getuserdetails/${id}`
-        `https://pear-lucky-panda.cyclic.cloud/api/users/getuserdetails/${id}`
+        `https://powrlingo-server.onrender.com/api/users/getuserdetails/${id}`
       );
       setUserDetails((prevState) => ({
         ...prevState,

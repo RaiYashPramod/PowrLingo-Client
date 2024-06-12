@@ -17,7 +17,7 @@ const JoinBattleModal = ({ showModal, toggleModal }) => {
     axios.defaults.headers.common["Authorization"] = token;
     try {
       const response = await axios.post(
-        `https://pear-lucky-panda.cyclic.cloud/api/battle/join/${battleID}`
+        `https://powrlingo-server.onrender.com/api/battle/join/${battleID}`
         // `http://localhost:3000/api/battle/join/${battleID}`
       );
 

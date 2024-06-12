@@ -25,7 +25,7 @@ const Battle = () => {
 
       const response = await axios.get(
         // `http://localhost:3000/api/battle/getbattle/${battleId}`
-        `https://pear-lucky-panda.cyclic.cloud/api/battle/getbattle/${battleId}`
+        `https://powrlingo-server.onrender.com/api/battle/getbattle/${battleId}`
       );
 
       if (response.status === 200) {
@@ -54,7 +54,7 @@ const Battle = () => {
     try {
       const response = await axios.get(
         // `http://localhost:3000/api/users/getuserdetails/${id}`
-        `https://pear-lucky-panda.cyclic.cloud/api/users/getuserdetails/${id}`
+        `https://powrlingo-server.onrender.com/api/users/getuserdetails/${id}`
       );
       return response.data.user;
     } catch (error) {
@@ -68,7 +68,7 @@ const Battle = () => {
     try {
       const response = await axios.get(
         // "http://localhost:3000/api/users/getuser"
-        "https://pear-lucky-panda.cyclic.cloud/api/users/getuser"
+        "https://powrlingo-server.onrender.com/api/users/getuser"
       );
       setCurrentPlayer(response.data.user);
       // Set the initial turn based on the challenger of the battle
@@ -84,7 +84,7 @@ const Battle = () => {
       console.log(answers)
       const response = axios.post(
         // `http://localhost:3000/api/battle/changeturn/${battleId}`,
-        `https://pear-lucky-panda.cyclic.cloud/api/battle/changeturn/${battleId}`,
+        `https://powrlingo-server.onrender.com/api/battle/changeturn/${battleId}`,
         { challenger: nextTurn }
       );
 
@@ -105,7 +105,7 @@ const Battle = () => {
     try {
       const response = await axios.get(
         // `http://localhost:3000/api/battle/fetchQuestions/${battleId}`
-        `https://pear-lucky-panda.cyclic.cloud/api/battle/fetchQuestions/${battleId}`
+        `https://powrlingo-server.onrender.com/api/battle/fetchQuestions/${battleId}`
       );
 
       console.log(response.data.randomQuestions);

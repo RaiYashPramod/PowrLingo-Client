@@ -11,7 +11,7 @@ const LeadearBoard = () => {
   const fetchLeaderBoard = async () => {
     try {
       const response = await fetch(
-        "https://pear-lucky-panda.cyclic.cloud/api/users/leaderboard"
+        "https://powrlingo-server.onrender.com/api/users/leaderboard"
       );
       const data = await response.json();
       setData(data); // Update the state with the fetched leaderboard data
